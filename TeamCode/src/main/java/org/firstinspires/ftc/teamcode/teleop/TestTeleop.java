@@ -29,6 +29,8 @@ public class TestTeleop extends LinearOpMode {
 
         while (opModeIsActive()) {
 
+
+
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = -gamepad1.right_stick_x;
@@ -46,6 +48,25 @@ public class TestTeleop extends LinearOpMode {
             robot.bLeftWheel.setPower(backLeftPower*speed);
             robot.fRightWheel.setPower(frontRightPower*speed);
             robot.bRightWheel.setPower(backRightPower*speed);
+
+            if(gamepad1.a == true){
+                robot.lift.setPower(-1);
+
+            } else {
+                robot.lift.setPower(0);
+
+            }
+            if(gamepad1.y == true){
+                robot.lift.setPower(1);
+
+            }
+            else {
+                robot.lift.setPower(0);
+            }
+
+
+
+
 
 
         }
