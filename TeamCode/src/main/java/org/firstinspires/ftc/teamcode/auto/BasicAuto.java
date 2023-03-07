@@ -49,79 +49,44 @@ public class BasicAuto extends LinearOpMode{
         }
         waitForStart(); //wait for play button to be pressed
         // autonomous happens here
-        if (a == ParkingAUTO.Parking.Right){
-            robot.fRightWheel.setPower(1);
-            robot.bRightWheel.setPower(-1);
-            robot.fLeftWheel.setPower(-1);
-            robot.bLeftWheel.setPower(1);
-            sleep(1000);
-            robot.fRightWheel.setPower(0);
-            robot.bRightWheel.setPower(0);
-            robot.fLeftWheel.setPower(0);
-            robot.bLeftWheel.setPower(0);
-
-
-        }
-        else{
-            robot.fRightWheel.setPower(-1);
-            robot.bRightWheel.setPower(1);
-            robot.fLeftWheel.setPower(1);
-            robot.bLeftWheel.setPower(-1);
-            sleep(1000);
-            robot.fRightWheel.setPower(0);
-            robot.bRightWheel.setPower(0);
-            robot.fLeftWheel.setPower(0);
-            robot.bLeftWheel.setPower(0);
-            sleep(10);
-            robot.fRightWheel.setPower(1);
-            robot.bRightWheel.setPower(1);
-            robot.fLeftWheel.setPower(1);
-            robot.bLeftWheel.setPower(1);
-            sleep(1000);
-            robot.fRightWheel.setPower(0);
-            robot.bRightWheel.setPower(0);
-            robot.fLeftWheel.setPower(0);
-            robot.bLeftWheel.setPower(0);
-            sleep(10);
-            robot.fRightWheel.setPower(1);
-            robot.bRightWheel.setPower(1);
-            robot.fLeftWheel.setPower(-1);
-            robot.bLeftWheel.setPower(-1);
-            sleep(500);
-            robot.fRightWheel.setPower(0);
-            robot.bRightWheel.setPower(0);
-            robot.fLeftWheel.setPower(0);
-            robot.bLeftWheel.setPower(0);
-            sleep(10);
-            robot.fRightWheel.setPower(-1);
-            robot.bRightWheel.setPower(-1);
-            robot.fLeftWheel.setPower(1);
-            robot.bLeftWheel.setPower(1);
-            sleep(500);
-            robot.fRightWheel.setPower(0);
-            robot.bRightWheel.setPower(0);
-            robot.fLeftWheel.setPower(0);
-            robot.bLeftWheel.setPower(0);
-            sleep(10);
-            robot.fRightWheel.setPower(-1);
-            robot.bRightWheel.setPower(-1);
-            robot.fLeftWheel.setPower(-1);
-            robot.bLeftWheel.setPower(-1);
-            sleep(1000);
-            robot.fRightWheel.setPower(0);
-            robot.bRightWheel.setPower(0);
-            robot.fLeftWheel.setPower(0);
-            robot.bLeftWheel.setPower(0);
-
-
-        }
-        //while(robot.right.isBusy()|| robot.left.isBusy()) {
-
-        //telemetry.addData("Status", robot.armMotor.getCurrentPosition());
-        // telemetry.update();
-        //}
 
 
 
+    }
+    public void robotRight(int numOfDegrees){
+        robot.fLeftWheel.setPower(1);
+        robot.bLeftWheel.setPower(1);
+        robot.fRightWheel.setPower(-1);
+        robot.bRightWheel.setPower(-1);
+        sleep(2000*numOfDegrees);
+        robot.fLeftWheel.setPower(0);
+        robot.bLeftWheel.setPower(0);
+        robot.fRightWheel.setPower(0);
+        robot.bRightWheel.setPower(0);
+    }
+
+    public void robotMove(int numOfSquares){
+
+        robot.fLeftWheel.setPower(1);
+        robot.bLeftWheel.setPower(1);
+        robot.fRightWheel.setPower(1);
+        robot.bRightWheel.setPower(1);
+        sleep(2000*numOfSquares);
+        robot.fLeftWheel.setPower(0);
+        robot.bLeftWheel.setPower(0);
+        robot.fRightWheel.setPower(0);
+        robot.bRightWheel.setPower(0);
+
+    }
+    public void roboLeft(int numOfDegrees){
+        robot.fLeftWheel.setPower(-1);
+        robot.bLeftWheel.setPower(-1);
+        robot.fRightWheel.setPower(1);
+        robot.bRightWheel.setPower(1);
+        sleep(2000*numOfDegrees);
+        robot.fLeftWheel.setPower(0);
+        robot.bLeftWheel.setPower(0);
+        robot.fRightWheel.setPower(0);
+        robot.bRightWheel.setPower(0);
     }
 }
