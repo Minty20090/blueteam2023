@@ -10,6 +10,8 @@ public class hi extends Project{
     public DcMotor fRightWheel = null;
     public DcMotor bLeftWheel = null;
     public DcMotor bRightWheel = null;
+    public DcMotor lift = null;
+
 
 
 
@@ -21,6 +23,8 @@ public class hi extends Project{
         fRightWheel = hwMap.dcMotor.get("fRightWheel");
         bLeftWheel = hwMap.dcMotor.get("bLeftWheel");
         bRightWheel = hwMap.dcMotor.get("bRightWheel");
+        //lift = hwMap.dcMotor.get("lift");
+
 
 
         // Motors and facing in to each other
@@ -31,7 +35,7 @@ public class hi extends Project{
 
         // intake.setDirection(DcMotor.Direction.FORWARD);
 
-
+        //lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
