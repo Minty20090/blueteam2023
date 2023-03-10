@@ -78,12 +78,12 @@ public class BasicAuto extends LinearOpMode{
         robot.bRightWheel.setPower(0);
 
     }
-    public void roboLeft(int numOfDegrees){
+    public void robotLeft(int numOfDegrees){
         robot.fLeftWheel.setPower(-1);
         robot.bLeftWheel.setPower(-1);
         robot.fRightWheel.setPower(1);
         robot.bRightWheel.setPower(1);
-        sleep(2000*numOfDegrees);
+        sleep(2000*numOfDegrees/90);
         robot.fLeftWheel.setPower(0);
         robot.bLeftWheel.setPower(0);
         robot.fRightWheel.setPower(0);
