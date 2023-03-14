@@ -34,8 +34,7 @@ public class hi extends Project{
         bLeftWheel.setDirection(DcMotor.Direction.REVERSE);
 
         // intake.setDirection(DcMotor.Direction.FORWARD);
-
-        //lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         fRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
