@@ -49,41 +49,72 @@ public class BasicAuto extends LinearOpMode{
         }
         waitForStart(); //wait for play button to be pressed
         // autonomous happens here
+        if(a == ParkingAUTO.Parking.Right) {
+            // right side here
+            //score preloaded
+            robotMove(1.5);
+            robotRight(1);
+            robotMove(0.25);
+            robotLeft(1);
+            // lift code here
+            robotLeft(1);
+            robotMove(1.75);
+            //lift code: pick up cone
+            robotRight(2);
+            robotMove(1.75);
+            robotLeft(1);
 
+        }
+        else {
+            // left side code here
+            //score preloaded
+            robotMove(1.5);
+            robotLeft(1);
+            robotMove(0.25);
+            robotRight(1);
+            // lift code here
+            robotRight(1);
+            robotMove(1.75);
+            //lift code: pick up cone
+            robotRight(2);
+            robotMove(1.75);
+            robotLeft(1);
+
+        }
 
 
     }
-    public void robotRight(int numOfDegrees){
+    public void robotRight(double numOfDegrees){
         robot.fLeftWheel.setPower(1);
         robot.bLeftWheel.setPower(1);
         robot.fRightWheel.setPower(-1);
         robot.bRightWheel.setPower(-1);
-        sleep(2000*numOfDegrees);
+        sleep((long) (2000*numOfDegrees));
         robot.fLeftWheel.setPower(0);
         robot.bLeftWheel.setPower(0);
         robot.fRightWheel.setPower(0);
         robot.bRightWheel.setPower(0);
     }
 
-    public void robotMove(int numOfSquares){
+    public void robotMove(double numOfSquares){
 
         robot.fLeftWheel.setPower(1);
         robot.bLeftWheel.setPower(1);
         robot.fRightWheel.setPower(1);
         robot.bRightWheel.setPower(1);
-        sleep(2000*numOfSquares);
+        sleep((long) (2000*numOfSquares));
         robot.fLeftWheel.setPower(0);
         robot.bLeftWheel.setPower(0);
         robot.fRightWheel.setPower(0);
         robot.bRightWheel.setPower(0);
 
     }
-    public void robotLeft(int numOfDegrees){
+    public void robotLeft(double numOfDegrees){
         robot.fLeftWheel.setPower(-1);
         robot.bLeftWheel.setPower(-1);
         robot.fRightWheel.setPower(1);
         robot.bRightWheel.setPower(1);
-        sleep(2000*numOfDegrees/90);
+        sleep((long) (2000*numOfDegrees));
         robot.fLeftWheel.setPower(0);
         robot.bLeftWheel.setPower(0);
         robot.fRightWheel.setPower(0);
