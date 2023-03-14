@@ -11,7 +11,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Projects.hi;
 @TeleOp(name = "TestTeleop")
-
 public class TestTeleop extends LinearOpMode {
     public hi robot = new hi();
 
@@ -22,34 +21,16 @@ public class TestTeleop extends LinearOpMode {
         int rightPosition = 0;
         int leftPosition = 0;
         int[] positions;
-        double speed = .5;
+        double speed = .9;
+
+
 
         waitForStart();
         boolean isSpinning = false;
 
         while (opModeIsActive()) {
-            if(gamepad1.a == true) {
-                robot.fLeftWheel.setPower(.3);
-                robot.bLeftWheel.setPower(.3);
-                robot.fRightWheel.setPower(.3);
-                robot.bRightWheel.setPower(.3);
-                sleep(1700);
-                robot.fLeftWheel.setPower(0);
-                robot.bLeftWheel.setPower(0);
-                robot.fRightWheel.setPower(0);
-                robot.bRightWheel.setPower(0);
-            }
-            if (gamepad1.b == true) {
-                robot.fLeftWheel.setPower(-.3);
-                robot.bLeftWheel.setPower(-.3);
-                robot.fRightWheel.setPower(.3);
-                robot.bRightWheel.setPower(.3);
-                sleep(1200);
-                robot.fLeftWheel.setPower(0);
-                robot.bLeftWheel.setPower(0);
-                robot.fRightWheel.setPower(0);
-                robot.bRightWheel.setPower(0);
-            }
+
+
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = -gamepad1.right_stick_x;
@@ -68,6 +49,78 @@ public class TestTeleop extends LinearOpMode {
             robot.fRightWheel.setPower(frontRightPower*speed);
             robot.bRightWheel.setPower(backRightPower*speed);
 
+            int liftPosition = 0;
+
+            if(gamepad1.left_bumper == true){
+                //robot.lift.setPower(1);
+                liftPosition = liftPosition + 10;
+                //robot.lift.setTargetPosition(liftPosition);
+
+            } else {
+                //robot.lift.setPower(0);
+
+            }
+            if(gamepad1.right_bumper == true){
+               // robot.lift.setPower(1);
+               // liftPosition = liftPosition - 10;
+               // robot.lift.setTargetPosition(liftPosition);
+
+            } else {
+                //robot.lift.setPower(0);
+
+            }
+            if (gamepad1.b == true) {
+                robot.fLeftWheel.setPower(.3);
+                robot.bLeftWheel.setPower(.3);
+                robot.fRightWheel.setPower(-.3);
+                robot.bRightWheel.setPower(-.3);
+                sleep(2000);
+                robot.fLeftWheel.setPower(0);
+                robot.bLeftWheel.setPower(0);
+                robot.fRightWheel.setPower(0);
+                robot.bRightWheel.setPower(0);
+               // robot.lift.setTargetPosition(100);
+               // robot.lift.setPower(1);
+               // liftPosition = 100;
+            }
+            if(gamepad1.a == true){
+                robot.fLeftWheel.setPower(-.3);
+                robot.bLeftWheel.setPower(.3);
+                robot.fRightWheel.setPower(-.3);
+                robot.bRightWheel.setPower(.3);
+                sleep(2200);
+                robot.fLeftWheel.setPower(0);
+                robot.bLeftWheel.setPower(0);
+                robot.fRightWheel.setPower(0);
+                robot.bRightWheel.setPower(0);
+            }
+            if(gamepad1.b == true){
+                robot.fLeftWheel.setPower(-.3);
+                robot.bLeftWheel.setPower(.3);
+                robot.fRightWheel.setPower(-.3);
+                robot.bRightWheel.setPower(.3);
+                sleep(2500);
+                robot.fLeftWheel.setPower(0);
+                robot.bLeftWheel.setPower(0);
+                robot.fRightWheel.setPower(0);
+                robot.bRightWheel.setPower(0);
+
+            }
+            if(gamepad1.x == true){
+                robot.fLeftWheel.setPower(.3);
+                robot.bLeftWheel.setPower(.3);
+                robot.fRightWheel.setPower(-.3);
+                robot.bRightWheel.setPower(-.3);
+                sleep(2300);
+                robot.fLeftWheel.setPower(0);
+                robot.bLeftWheel.setPower(0);
+                robot.fRightWheel.setPower(0);
+                robot.bRightWheel.setPower(0);
+
+
+
+
+
 
 
 
@@ -78,3 +131,5 @@ public class TestTeleop extends LinearOpMode {
 
 
 }
+
+//hi
