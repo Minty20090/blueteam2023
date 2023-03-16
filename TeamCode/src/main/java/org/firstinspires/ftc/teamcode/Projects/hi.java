@@ -11,6 +11,7 @@ public class hi extends Project{
     public DcMotor bLeftWheel = null;
     public DcMotor bRightWheel = null;
     public DcMotor lift = null;
+    public DcMotor liftDos = null;
 
 
 
@@ -24,6 +25,7 @@ public class hi extends Project{
         bLeftWheel = hwMap.dcMotor.get("bLeftWheel");
         bRightWheel = hwMap.dcMotor.get("bRightWheel");
         //lift = hwMap.dcMotor.get("lift");
+        //liftDos = hwMap.dcMotor.get("liftDos");
 
 
 
@@ -32,9 +34,11 @@ public class hi extends Project{
         fLeftWheel.setDirection(DcMotor.Direction.REVERSE);
         bRightWheel.setDirection(DcMotor.Direction.FORWARD);
         bLeftWheel.setDirection(DcMotor.Direction.REVERSE);
+        //lift.setDirection(DcMotor.Direction.FORWARD);
 
         // intake.setDirection(DcMotor.Direction.FORWARD);
         //lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //liftDos.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         fRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -46,6 +50,7 @@ public class hi extends Project{
         bRightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bLeftWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         // intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Stop();
     }
