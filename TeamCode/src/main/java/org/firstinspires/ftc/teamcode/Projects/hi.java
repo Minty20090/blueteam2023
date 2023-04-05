@@ -73,6 +73,11 @@ public class hi extends Project{
         fLeftWheel.setPower(0);
         bRightWheel.setPower(0);
         bLeftWheel.setPower(0);
+        clawRight.setPosition(1);
+        clawLeft.setPosition(0);
+        baseLift.setPower(0);
+        firstJointRight.setPosition(0);
+        firstJointLeft.setPosition(1);
 
     }
 }
