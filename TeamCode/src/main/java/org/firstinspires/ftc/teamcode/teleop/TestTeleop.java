@@ -29,7 +29,8 @@ public class TestTeleop extends LinearOpMode {
         boolean isSpinning = false;
 
         while (opModeIsActive()) {
-
+            robot.baseLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.firstJointLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
@@ -90,8 +91,8 @@ public class TestTeleop extends LinearOpMode {
                 robot.baseLift.setTargetPosition(0);
                 robot.baseLift.setPower(.5);
                 // arm2 flat
-                robot.firstJointRight.setPosition(1);
-                robot.firstJointLeft.setPosition(0);
+                robot.firstJointLift.setTargetPosition(100);
+                robot.firstJointLift.setPower(.5);
                 // wrist flat
                 robot.wrist.setPosition(1);
                 liftHeight = 0;
@@ -101,8 +102,8 @@ public class TestTeleop extends LinearOpMode {
                 robot.baseLift.setTargetPosition(0);
                 robot.baseLift.setPower(.5);
                 // arm2 up at 70~ degrees
-                robot.firstJointRight.setPosition(.3);
-                robot.firstJointLeft.setPosition(.7);
+                robot.firstJointLift.setTargetPosition(0);
+                robot.firstJointLift.setPower(.5);
                 // wrist flat
                 robot.wrist.setPosition(.3);
                 liftHeight = 100;
@@ -113,8 +114,8 @@ public class TestTeleop extends LinearOpMode {
                 robot.baseLift.setTargetPosition(100);
                 robot.baseLift.setPower(.5);
                 // arm2 vertical 80-90 degrees
-                robot.firstJointRight.setPosition(0);
-                robot.firstJointLeft.setPosition(1);
+                robot.firstJointLift.setTargetPosition(0);
+                robot.firstJointLift.setPower(.5);
                 // wrist flat
                 robot.wrist.setPosition(.3);
                 liftHeight = 200;
@@ -129,14 +130,14 @@ public class TestTeleop extends LinearOpMode {
                 robot.wrist.setPosition(robot.wrist.getPosition() - .05);
             }
 
-            if(gamepad1.right_trigger == 0) {
+            if(gamepad1.right_trigger >.3) {
                 //open claw
-                robot.clawRight.setPosition(0);
+                robot.clawRight.setPosition(1);
                 robot.clawRight.setPosition(1);
             }
-            if(gamepad1.left_trigger == 0) {
+            if(gamepad1.left_trigger > .3) {
                 //close claw
-                robot.clawRight.setPosition(1);
+                robot.clawRight.setPosition(0);
                 robot.clawRight.setPosition(0);
             }
 

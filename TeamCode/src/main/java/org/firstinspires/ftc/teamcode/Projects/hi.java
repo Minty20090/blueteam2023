@@ -14,6 +14,7 @@ public class hi extends Project{
 
 
     public DcMotor baseLift = null;
+    public DcMotor firstJointLift = null;
     public Servo firstJointRight = null;
     public Servo firstJointLeft = null;
     public Servo wrist = null;
@@ -31,22 +32,23 @@ public class hi extends Project{
         fRightWheel = hwMap.dcMotor.get("fRightWheel");
         bLeftWheel = hwMap.dcMotor.get("bLeftWheel");
         bRightWheel = hwMap.dcMotor.get("bRightWheel");
-        baseLift = hwMap.dcMotor.get("baseLift");
-        firstJointRight = hwMap.servo.get("firstJointRight");
-        firstJointLeft = hwMap.servo.get("firstJointLeft");
+        baseLift = hwMap.dcMotor.get("shoulder");
+        firstJointLift = hwMap.dcMotor.get("elbow");
+
         wrist = hwMap.servo.get("wrist");
-        clawLeft = hwMap.servo.get("clawLeft");
-        clawRight = hwMap.servo.get("clawRight");
+        clawLeft = hwMap.servo.get("leftclaw");
+        clawRight = hwMap.servo.get("rightclaw");
 
 
 
         // Motors and facing in to each other
         fRightWheel.setDirection(DcMotor.Direction.FORWARD);
         fLeftWheel.setDirection(DcMotor.Direction.REVERSE);
-        bRightWheel.setDirection(DcMotor.Direction.FORWARD);
-        bLeftWheel.setDirection(DcMotor.Direction.REVERSE);
+        bRightWheel.setDirection(DcMotor.Direction.REVERSE);
+        bLeftWheel.setDirection(DcMotor.Direction.FORWARD);
         //lift.setDirection(DcMotor.Direction.FORWARD);
         baseLift.setDirection(DcMotor.Direction.FORWARD);
+        firstJointLift.setDirection(DcMotor.Direction.FORWARD);
         // intake.setDirection(DcMotor.Direction.FORWARD);
         //lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //liftDos.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -56,6 +58,7 @@ public class hi extends Project{
         bLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         baseLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        firstJointLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         fRightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fLeftWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -73,11 +76,13 @@ public class hi extends Project{
         fLeftWheel.setPower(0);
         bRightWheel.setPower(0);
         bLeftWheel.setPower(0);
-        clawRight.setPosition(1);
+        clawRight.setPosition(0);
         clawLeft.setPosition(0);
         baseLift.setPower(0);
-        firstJointRight.setPosition(0);
-        firstJointLeft.setPosition(1);
+        baseLift.setTargetPosition(0);
+        firstJointLift.setPower(0);
+        firstJointLift.setTargetPosition(0);
+        wrist.setPosition(0);
 
     }
 }

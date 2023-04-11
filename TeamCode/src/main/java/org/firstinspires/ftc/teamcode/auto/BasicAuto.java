@@ -49,6 +49,18 @@ public class BasicAuto extends LinearOpMode{
         }
         waitForStart(); //wait for play button to be pressed
         // autonomous happens here
+
+
+        // =================================================
+        // WESLEY CODE HERE!!!
+        // =================================================
+        // move robot forward 1 square
+
+        // move robot forward 1 square + turn right 90 degress + move forward another square
+
+        // move robot forward 1 square + turn left 90 degress + move forward another square
+
+        
         if(a == ParkingAUTO.Parking.Right) {
             // right side here
             //score preloaded
