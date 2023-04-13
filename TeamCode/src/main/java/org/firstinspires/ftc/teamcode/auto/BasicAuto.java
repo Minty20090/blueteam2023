@@ -56,9 +56,17 @@ public class BasicAuto extends LinearOpMode{
         // =================================================
         // move robot forward 1 square
 
+        robotMove(1);
+
         // move robot forward 1 square + turn right 90 degress + move forward another square
+        robotMove(1);
+        robotRight(0.25);
+        robotMove(1);
 
         // move robot forward 1 square + turn left 90 degress + move forward another square
+        robotMove(1);
+        robotLeft(0.25);
+        robotMove(1);
 
         
         if(a == ParkingAUTO.Parking.Right) {
