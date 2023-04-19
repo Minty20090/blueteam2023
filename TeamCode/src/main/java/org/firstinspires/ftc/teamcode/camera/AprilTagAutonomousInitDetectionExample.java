@@ -216,8 +216,9 @@ public class AprilTagAutonomousInitDetectionExample<tagOfInterest> extends Linea
         if (a == Side.Right) {
             if(tagOfInterest == null || tagOfInterest.id == Left ) {
                 //trajectory
-                moveRobot(1000,1);
+                moveRobot(1200,1);
                 turnRobot("left", 90);
+                moveRobot(1200,1);
 
 
 
@@ -227,10 +228,14 @@ public class AprilTagAutonomousInitDetectionExample<tagOfInterest> extends Linea
 
             } else if(tagOfInterest.id == Middle) {
                 //trajectory
+                moveRobot(1200,1);
 
 
             }else {
                 //trajectory
+                moveRobot(1200,1);
+                turnRobot("right", 90);
+                moveRobot(1200,1);
 
 
 
@@ -242,16 +247,21 @@ public class AprilTagAutonomousInitDetectionExample<tagOfInterest> extends Linea
             /* Actually do something useful */
             if (tagOfInterest == null || tagOfInterest.id == Left) {
                 //trajectory
+                moveRobot(1200,1);
+                turnRobot("right", 90);
+                moveRobot(1200,1);
 
 
 
             } else if (tagOfInterest.id == Middle) {
                 //trajectory
-
+                moveRobot(1200,1);
 
 
             } else {
-
+                moveRobot(1200,1);
+                turnRobot("left", 90);
+                moveRobot(1200,1);
             }
         }
         /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */

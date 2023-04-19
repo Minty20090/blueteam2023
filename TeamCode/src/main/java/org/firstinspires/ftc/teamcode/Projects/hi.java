@@ -78,7 +78,7 @@ public class hi extends Project{
         bRightWheel.setPower(0);
         bLeftWheel.setPower(0);
         clawRight.setPosition(0);
-        clawLeft.setPosition(0);
+        clawLeft.setPosition(1);
         wrist.setPosition(0);
 
     }

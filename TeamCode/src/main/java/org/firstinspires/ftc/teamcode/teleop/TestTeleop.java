@@ -22,10 +22,12 @@ public class TestTeleop extends LinearOpMode {
         int leftPosition = 0;
         int[] positions;
         double speed = .9;
-        robot.baseLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.firstJointLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.baseLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.firstJointLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.baseLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        robot.firstJointLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        robot.baseLift.setTargetPosition(0);
+//        robot.firstJointLift.setTargetPosition(0);
+//        robot.baseLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.firstJointLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
         waitForStart();
@@ -53,24 +55,6 @@ public class TestTeleop extends LinearOpMode {
             robot.bRightWheel.setPower(backRightPower*speed);
 
 
-            int liftHeight = 0;
-            // =================================
-            // DO NOT TEST MANUAL LIFT!!!!!!!
-            // =================================
-            if(gamepad1.left_bumper == true){
-
-
-            } else {
-
-            }
-
-            if(gamepad1.right_bumper == true){
-
-
-            } else {
-
-
-            }
 
             // =============================
             // WHAT THE MOTORS ARE DOING
@@ -84,59 +68,44 @@ public class TestTeleop extends LinearOpMode {
             // ====================
 //             A,B,Y - presets (ground, low, medium)
 //             DPAD up and down - move wrist up and down
-//             Bumpers - manual control of lift (DO NOT TOUCH!!!!!)
+//             Bumpers - move wrist up and down
 //             right and left trigger - open and close claw respectively
 
-
-            if (gamepad1.a == true) {
-                // arm1 down
-                robot.baseLift.setPower(.5);
-                robot.baseLift.setTargetPosition(0);
-
-                // arm2 flat
-                robot.firstJointLift.setPower(.5);
-                robot.firstJointLift.setTargetPosition(53);
-
-                // wrist flat
-                robot.wrist.setPosition(1);
-                liftHeight = 0;
-            }
             if(gamepad1.b == true){
-                // arm1 down
-                robot.baseLift.setPower(.3);
-                robot.baseLift.setTargetPosition(0);
-
-                // arm2 up at 70~ degrees
-                robot.firstJointLift.setPower(.3);
-                robot.firstJointLift.setTargetPosition(0);
-
-                // wrist flat
-                robot.wrist.setPosition(.3);
-                liftHeight = 100;
+                robot.firstJointLift.setPower(1);
+            }
+            else if (gamepad1.a == true) {
+                robot.firstJointLift.setPower(-1);
+            }
+            else {
+                robot.firstJointLift.setPower(0);
             }
 
-            if(gamepad1.y == true){
-                // arm1 is 110~ degrees up
-                robot.baseLift.setTargetPosition(-50);
 
-                // arm2 vertical 80-90 degrees
-
-                robot.firstJointLift.setTargetPosition(0);
-
-                int[] a = WaitTillTargetReached(10, true);
-
-                // wrist flat
-                robot.wrist.setPosition(.3);
-                liftHeight = 200;
-
+            if (gamepad1.x == true) {
+                robot.baseLift.setPower(-1);
             }
-            if(gamepad1.dpad_up == true) {
+            else if(gamepad1.y == true){
+                robot.baseLift.setPower(1);
+            }
+            else {
+                robot.baseLift.setPower(0);
+            }
+
+            double currentPosition = robot.wrist.getPosition();
+
+            if(gamepad1.right_bumper == true) {
                 // make wrist go up
-                robot.wrist.setPosition(robot.wrist.getPosition() + .05);
+                currentPosition = robot.wrist.getPosition();
+                if (currentPosition <=1){
+                    robot.wrist.setPosition( currentPosition + .01);
+                }
+
             }
-            else if(gamepad1.dpad_down == true) {
+            if(gamepad1.left_bumper == true) {
                 //make wrist go down//
-                robot.wrist.setPosition(robot.wrist.getPosition() - .05);
+                currentPosition = robot.wrist.getPosition();
+                robot.wrist.setPosition(currentPosition - .01);
             }
 
             if(gamepad1.right_trigger >.3) {
@@ -152,45 +121,59 @@ public class TestTeleop extends LinearOpMode {
             if (gamepad1.x == true){
 
             }
-            telemetry.addLine("encoder count: " + robot.firstJointLift.getCurrentPosition() );
+            telemetry.addLine("first joint encoder count: " + robot.firstJointLift.getCurrentPosition() );
             telemetry.addLine("target position: " + robot.firstJointLift.getTargetPosition() );
+            telemetry.addLine("base lift encoder count: " + robot.baseLift.getCurrentPosition() );
+            telemetry.addLine("target position: " + robot.baseLift.getTargetPosition() );
+
             telemetry.update();
 
         }
 
 
     }
-    int[] WaitTillTargetReached(int tolerance, boolean lock){
-        int leftDifference = Math.abs(robot.baseLift.getTargetPosition() - robot.baseLift.getCurrentPosition());
-        int rightDifference = Math.abs(robot.firstJointLift.getTargetPosition() - robot.firstJointLift.getCurrentPosition());
+    void baseLiftMotorControl(int tolerance, boolean lock){
+        int difference = Math.abs(robot.baseLift.getTargetPosition() - robot.baseLift.getCurrentPosition());
         int check=102930293;
-        while(leftDifference > tolerance || rightDifference > tolerance)
+        while(difference > tolerance) {
 
-        {
+            difference = Math.abs(robot.baseLift.getTargetPosition() - robot.baseLift.getCurrentPosition());
 
-            leftDifference = Math.abs(robot.baseLift.getTargetPosition() - robot.baseLift.getCurrentPosition());
-            rightDifference = Math.abs(robot.firstJointLift.getTargetPosition() - robot.firstJointLift.getCurrentPosition());
-
-            robot.baseLift.setPower(0.5);
-            robot.firstJointLift.setPower(0.5);
-            if (check == robot.firstJointLift.getCurrentPosition() + robot.baseLift.getCurrentPosition()) {
+            robot.baseLift.setPower(0.1);
+            sleep(100);
+            if (difference == Math.abs(robot.baseLift.getTargetPosition() - robot.baseLift.getCurrentPosition())){
                 break;
             }
-            else {
-                check = robot.firstJointLift.getCurrentPosition() + robot.baseLift.getCurrentPosition();
-            }
-            sleep(1);
-            int a = robot.firstJointLift.getCurrentPosition();
-            int c = robot.baseLift.getCurrentPosition();
-            telemetry.addLine("current position: " + a + "," + c);
-            telemetry.addLine("target position: " + robot.baseLift.getTargetPosition());
-            telemetry.update();
+
 
         }
-        int a = robot.firstJointLift.getCurrentPosition();
-        int c = robot.baseLift.getCurrentPosition();
+        robot.baseLift.setTargetPosition(robot.baseLift.getCurrentPosition());
 
-        int[] positions = new int[] {a,c};
+        if(!lock)
+        {
+            robot.baseLift.setPower(0);
+            robot.firstJointLift.setPower(0);
+        }
+
+    }
+    void firstJointLiftControl(int tolerance, boolean lock){
+        int difference = Math.abs(robot.firstJointLift.getTargetPosition() - robot.firstJointLift.getCurrentPosition());
+        int check=102930293;
+        while(difference > tolerance)
+
+        {
+            difference = Math.abs(robot.firstJointLift.getTargetPosition() - robot.firstJointLift.getCurrentPosition());
+            robot.firstJointLift.setPower(0.1);
+            sleep(100);
+            if (difference == Math.abs(robot.firstJointLift.getTargetPosition() - robot.firstJointLift.getCurrentPosition())){
+                break;
+            }
+
+
+
+        }
+
+        robot.firstJointLift.setTargetPosition(robot.firstJointLift.getCurrentPosition());
 
 
         if(!lock)
@@ -198,9 +181,8 @@ public class TestTeleop extends LinearOpMode {
             robot.baseLift.setPower(0);
             robot.firstJointLift.setPower(0);
         }
-        return(positions);
 
-    }
+}
 
 }
 
