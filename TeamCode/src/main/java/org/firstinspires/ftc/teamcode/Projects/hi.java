@@ -6,80 +6,68 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
 
 public class hi extends Project{
-    public DcMotor fLeftWheel = null;
-    public DcMotor fRightWheel = null;
-    public DcMotor bLeftWheel = null;
-    public DcMotor bRightWheel = null;
-
-
-
-    public DcMotor baseLift = null;
-    public DcMotor firstJointLift = null;
-    public Servo firstJointRight = null;
-    public Servo firstJointLeft = null;
-    public Servo wrist = null;
-    public Servo clawLeft = null;
-    public Servo clawRight = null;
-
-
+     // public DcMotor fLeftWheel = null;
+   public DcMotor fLeftWheel = null;
+   public DcMotor bLeftWheel = null;
+   public DcMotor fRightWheel = null;
+   public DcMotor bRightWheel = null;
+   public DcMotor leftLift = null;
+   public DcMotor rightLift = null;
+   public Servo rClaw = null;
+   public Servo lClaw = null;
 
 
     @Override
     public void init(HardwareMap ahwMap) {
         hwMap = ahwMap;
 
-        fLeftWheel = hwMap.dcMotor.get("fLeftWheel");
-        fRightWheel = hwMap.dcMotor.get("fRightWheel");
-        bLeftWheel = hwMap.dcMotor.get("bLeftWheel");
-        bRightWheel = hwMap.dcMotor.get("bRightWheel");
-        baseLift = hwMap.dcMotor.get("elbow");
-        firstJointLift = hwMap.dcMotor.get("shoulder");
-
-        wrist = hwMap.servo.get("wrist");
-        clawLeft = hwMap.servo.get("leftclaw");
-        clawRight = hwMap.servo.get("rightclaw");
+        // fLeftWheel = hwMap.dcMotor.get("fLeftWheel");
+       fLeftWheel = hwMap.dcMotor.get("fLeftWheel");
+       fRightWheel = hwMap.dcMotor.get("fRightWheel");
+       bLeftWheel = hwMap.dcMotor.get("bLeftWheel");
+       bRightWheel = hwMap.dcMotor.get("bRightWheel");
+       leftLift = hwMap.dcMotor.get("leftLift");
+       rightLift = hwMap.dcMotor.get("rightLift");
+       rClaw = hwMap.servo.get("rClaw");
+       lClaw = hwMap.servo.get("lClaw");
 
 
 
         // Motors and facing in to each other
-        fRightWheel.setDirection(DcMotor.Direction.FORWARD);
-        fLeftWheel.setDirection(DcMotor.Direction.REVERSE);
-        bRightWheel.setDirection(DcMotor.Direction.REVERSE);
-        bLeftWheel.setDirection(DcMotor.Direction.FORWARD);
-        //lift.setDirection(DcMotor.Direction.FORWARD);
-        baseLift.setDirection(DcMotor.Direction.FORWARD);
-        firstJointLift.setDirection(DcMotor.Direction.FORWARD);
-        // intake.setDirection(DcMotor.Direction.FORWARD);
-        //lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //liftDos.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        fRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        fLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        baseLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        firstJointLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        fRightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //fLeftWheel.setDirection(DcMotor.Direction.REVERSE);
+
+        fLeftWheel.setDirection(DcMotor.Direction.REVERSE);
+        fRightWheel.setDirection(DcMotor.Direction.FORWARD);
+        bLeftWheel.setDirection(DcMotor.Direction.REVERSE);
+        bRightWheel.setDirection(DcMotor.Direction.FORWARD);
+        leftLift.setDirection(DcMotor.Direction.REVERSE);
+        rightLift.setDirection(DcMotor.Direction.FORWARD);
+
+
+        //fLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        fLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        fRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bLeftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bRightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        //fLeftWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fLeftWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        bRightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        fRightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bLeftWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        // intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        baseLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        firstJointLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        bRightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Stop();
     }
 
     public void Stop(){
-        fRightWheel.setPower(0);
-        fLeftWheel.setPower(0);
-        bRightWheel.setPower(0);
-        bLeftWheel.setPower(0);
-        clawRight.setPosition(0);
-        clawLeft.setPosition(1);
-        wrist.setPosition(0);
+
+        //fLeftWheel.setPower(0);
 
     }
 }
